@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome to Our Site{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header, footer {
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        main {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Our Blogging Site{% endblock %}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'pages-list' %}">View Pages</a></li>
+                <li><a href="{% url 'articles-list' %}">Articles</a></li>
+                <li><a href="{% url 'blogs-list' %}">Blogs</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}?next={{ request.path }}">Log Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}?next={{ request.path }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {{ now.year }} Our Blogging Site. All rights reserved.</p>
+    </footer>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

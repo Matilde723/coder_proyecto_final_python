@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All Pages</h1>
+<h2>Articles</h2>
+<ul>
+    {% for article in articles %}
+    <li><a href="{% url 'page-detail' article.id %}">{{ article.title }}</a> - {{ article.author }}</li>
+    {% empty %}
+    <li>No articles available.</li>
+    {% endfor %}
+</ul>
+
+<h2>Blogs</h2>
+<ul>
+    {% for blog in blogs %}
+    <li><a href="{% url 'page-detail' blog.id %}">{{ blog.title }}</a> - {{ blog.author }}</li>
+    {% empty %}
+    <li>No blogs available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

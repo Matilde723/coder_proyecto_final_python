@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article List</title>
+</head>
+<body>
+    <h1>Articles</h1>
+    <form action="" method="get">
+        <input type="text" name="search" placeholder="Search articles" value="{{ request.GET.search }}">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for article in articles %}
+            <li>{{ article.title }} - {{ article.author }} ({{ article.publish_date }})</li>
+        {% empty %}
+            <li>No articles found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

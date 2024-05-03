@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+</head>
+<body>
+    <h1>Blogs</h1>
+    <form action="" method="get">
+        <input type="text" name="search" placeholder="Search blogs" value="{{ request.GET.search }}">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for blog in blogs %}
+            <li>{{ blog.title }} - Posted by {{ blog.posted_by }} on {{ blog.posted_on|date:"Y-m-d H:i" }}</li>
+        {% empty %}
+            <li>No blog posts found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

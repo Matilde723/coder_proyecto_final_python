@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Our Site</title>
+</head>
+<body>
+    <h1>Welcome to Our Site!</h1>
+    <p>This is the homepage of our website. Here you can find interesting articles and blog posts.</p>
+    <nav>
+        <ul>
+            <li><a href="{% url 'create-article' %}">Create New Article</a></li>
+            <li><a href="{% url 'create-blog' %}">Create New Blog Post</a></li>
+            <li><a href="{% url 'articles-list' %}">View Articles</a></li>
+            <li><a href="{% url 'blogs-list' %}">View Blogs</a></li>
+            <li><a href="{% url 'about' %}">Acerca de mi</a></li>
+            {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}?next={{ request.path }}">Log Out</a></li>
+            {% else %}
+                    <li><a href="{% url 'login' %}?next={{ request.path }}">Log In</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</body>
+</html>
